@@ -1,0 +1,20 @@
+#!/usr/bin/bash
+
+#creating pyshne file
+touch pyshne
+echo "#!/usr/bin/env python" > pyshne
+
+# copying pyshne file to /bin /usr/bin
+cp pyshne /bin/
+cp pyshne /usr/bin/
+
+# installing pyshne as your default shell if you are using zsh
+if [ -f ~/.zshrc ]; then
+    echo "pyshne" >> ~/.zshrc
+fi
+
+# installing pyshne as your default shell if you are using bash
+if [ -f ~/.bashrc ]; then
+    echo "pyshne" >> ~/.bashrc
+fi
+
