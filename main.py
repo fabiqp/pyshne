@@ -8,7 +8,10 @@ while True:
     command = input(f"{user} on {hostname} λ {path} ")
     if command == "exit":
         break
-    if command.startswith("cd"):
+    if command.startswith("cd "):
+        if command == "cd":
+            os.chdir(f"/home/{user}/")
         os.chdir(f"{path}/{command[3:]}")
-    os.system(command)
+    else:
+        os.system(command)
 
