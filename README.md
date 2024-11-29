@@ -9,6 +9,8 @@ pyshne is a free and open-source shell written in python
 `sudo ./test-pyshne`
 
 `sudo chmod +777 pyshne`
+
+`./pyshne`
 ## Installation 
 To install pyshne execute these commands
 
