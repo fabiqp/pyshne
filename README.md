@@ -1,7 +1,7 @@
 # Welcome to Python Shell of New Era
 ## About
 pyshne is a free and open-source shell written in python
-## To test pychne
+## To test pyshne
 `git clone https://github.com/fabiqp/pyshne.git`
 
 `cd pyshne`
