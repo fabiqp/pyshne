@@ -11,7 +11,7 @@ pyshne is a free and open-source shell written in python
 `sudo chmod +777 pyshne`
 
 `./pyshne`
-## Installation 
+## Installation
 To install pyshne execute these commands
 
 `git clone https://github.com/fabiqp/pyshne.git`
@@ -19,3 +19,8 @@ To install pyshne execute these commands
 `cd pyshne`
 
 `sudo ./install`
+
+## Configuration
+Config file is created after first run of pyshne on 
+`~/.config/pyshne/pyshne.conf`
+
