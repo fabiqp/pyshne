@@ -71,8 +71,9 @@ user = os.popen("echo $USER").read().strip()
 hostname = os.popen("cat /etc/hostname").read().strip()
 
 while True:
+    selected_theme = color_map.get(theme)
     path = os.getcwd()
-    command = input(f"{selected_theme}{user} on {hostname} λ {path} {Style.RESET_ALL}")
+    command = input(selected_theme + f"{selected_theme}{user} on {hostname} λ {path} {Style.RESET_ALL}")
     if command == "exit":
         break
     elif command.startswith("cd"):
@@ -88,6 +89,14 @@ while True:
                 print(f"Not a directory: {new_path}")
     elif command == "listdir":
         print(os.listdir())
+    elif command.startswith("color"):
+        if command == "color --help" or command == "color":
+            print(f"{selected_theme}color command is used to change text color on this session")
+            print(f"{selected_theme}colors: red, green, blue, yellow, magenta, cyan, white, default")
+        else:
+            theme = command[6:]
+
+
     else:
         os.system(command)
 
