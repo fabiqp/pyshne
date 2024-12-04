@@ -10,12 +10,16 @@ if os.path.exists(config_path):
     config = configparser.ConfigParser()
     config.read(config_path)
     theme = config['theme']['theme']
-    
+    symbol = config['theme']['symbol']
+    user_color = config['colors']['username_color']
+    hostname_color = config['colors']['hostname_color']
+    symbol_color = config['colors']['symbol_color']
+
 else:
     os.makedirs(os.path.expanduser("~/.config/pyshne"), exist_ok=True)
     
     with open(config_path, 'w') as config_file:
-        config_file.write("[theme]\ntheme = default\n")
+        config_file.write("[theme]\ntheme = default\nsymbol=λ\n")
     
     print(f"Config file has been created on {config_path}")
 
@@ -28,10 +32,14 @@ color_map = {
     "magenta": Fore.MAGENTA,
     "cyan": Fore.CYAN,
     "white": Fore.WHITE,
+    "black": Fore.BLACK,
     "default": Fore.RESET
 }
 
 selected_theme = color_map.get(theme)
+selected_user_color = color_map.get(user_color)
+selected_hostname_color = color_map.get(hostname_color)
+selected_symbol_color = color_map.get(symbol_color)
 def file_completer(text, state):
     path = os.getcwd()
     suggestions = [
@@ -73,7 +81,12 @@ hostname = os.popen("cat /etc/hostname").read().strip()
 while True:
     selected_theme = color_map.get(theme)
     path = os.getcwd()
-    command = input(selected_theme + f"{selected_theme}{user} on {hostname} λ {path} {Style.RESET_ALL}")
+    command = input(
+        
+        f"{selected_user_color}{user}{Style.RESET_ALL} {selected_theme}on " +
+        f"{selected_hostname_color}{hostname}{Style.RESET_ALL} " +
+        f"{selected_symbol_color}{symbol}{Style.RESET_ALL} {selected_theme}{path} ")
+
     if command == "exit":
         break
     elif command.startswith("cd"):
@@ -87,6 +100,8 @@ while True:
                 print(f"No such directory: {new_path}")
             except NotADirectoryError:
                 print(f"Not a directory: {new_path}")
+    elif command == "help":
+       print("some cutom pyshne commands")
     elif command == "listdir":
         print(os.listdir())
     elif command.startswith("color"):
