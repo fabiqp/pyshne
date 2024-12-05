@@ -19,9 +19,18 @@ else:
     os.makedirs(os.path.expanduser("~/.config/pyshne"), exist_ok=True)
     
     with open(config_path, 'w') as config_file:
-        config_file.write("[theme]\ntheme = default\nsymbol=λ\n")
+        config_file.write("[theme]\ntheme = default\nsymbol=λ\n[colors]\nusername_color = default\nhostname_color = default\nsymbol_color = default")
     
     print(f"Config file has been created on {config_path}")
+    if os.path.exists(config_path):
+        config = configparser.ConfigParser()
+        config.read(config_path)
+        theme = config['theme']['theme']
+        symbol = config['theme']['symbol']
+        user_color = config['colors']['username_color']
+        hostname_color = config['colors']['hostname_color']
+        symbol_color = config['colors']['symbol_color']
+
 
 #parsing theme from config to color
 color_map = {
